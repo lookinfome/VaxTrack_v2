@@ -18,19 +18,25 @@
           <form [formGroup]="loginForm" (ngSubmit)="onSubmitLogin()">
 
             <!-- user id -->
-            <input class="login-input" type="text" name="userid" id="userid" formControlName="userid" placeholder="username">
+            <input class="login-input" type="text" name="userid" id="userid" formControlName="userid"
+              placeholder="username">
 
             <br>
-
             <!-- password -->
-            <input class="login-input mt-2" type="password" name="password" id="password" formControlName="password" placeholder="password">
+            <input class="login-input mt-2" type="password" name="password" id="password" formControlName="password"
+              placeholder="password">
 
             <br>
-
             <!-- submit -->
-            <button class="login-submit mt-2" type="submit" [disabled]="loginForm.invalid">Login</button>
+            <button class="login-submit mt-2" type="submit">Login</button>
 
           </form>
+        </div>
+
+        <!-- action links -->
+        <div class="app-login-action-link mt-1 d-flex justify-content-center">
+          <p>Or new here?</p>
+          <a style="color: yellow;" class="mx-2" [routerLink]="['/register']">SignUp</a>
         </div>
 
       </div>

@@ -1,1 +1,78 @@
-<p>register works!</p>
+<div>
+  <div class="container">
+    <div class="row justify-content-center mt-5">
+      <div class="col col-6">
+
+        <!-- page title -->
+        <div class="app-register-title text-center">
+          <span>
+            <h1> {{ pageTitle.toUpperCase() }} </h1>
+          </span>
+          <span style="font-size: 16px;">
+            {{ pageDescription }} <i class="register-handshake fas fa-handshake"></i>
+          </span>
+        </div>
+
+        <!-- register form -->
+        <div class="register-form text-center mt-5">
+          <form [formGroup]="registerForm" (ngSubmit)="onSubmitLogin()">
+
+            <!-- first name -->
+            <input class="register-input" type="text" name="firstName" id="firstName" formControlName="firstName"
+              placeholder="first name">
+
+            <br>
+            <!-- last name -->
+            <input class="register-input mt-2" type="text" name="lastName" id="lastName" formControlName="lastName"
+              placeholder="last name">
+
+            <br>
+            <!-- email id -->
+            <input class="register-input mt-2" type="email" name="emailId" id="emailId" formControlName="emailId"
+              placeholder="email id">
+
+            <br>
+            <!-- phone number -->
+            <input class="register-input mt-2" type="text" name="phoneNumber" id="phoneNumber"
+              formControlName="phoneNumber" placeholder="phone number">
+
+            <br>
+            <!-- date of birth -->
+            <input class="register-input mt-2" style="width: 250px;" type="date" name="birthDate" id="birthDate" formControlName="birthDate"
+              placeholder="dd/mm/yyyy">
+
+            <br>
+            <!-- unique id -->
+             <input class="register-input mt-2" type="text" name="uniqueId" id="uniqueId" formControlName="uniqueId" placeholder="12 digit unique id">
+
+            <br>
+            <!-- gender -->
+            <div class="mt-2">
+              <input class="register-input" type="radio" name="gender" id="gender" formControlName="gender"
+                value="Male"> <span style="color: #FFFFFF;"> Male </span>
+              <input class="register-input" type="radio" name="gender" id="gender" formControlName="gender"
+                value="Female"> <span style="color: #FFFFFF;"> Female </span>
+              <input class="register-input" type="radio" name="gender" id="gender" formControlName="gender"
+                value="Other"> <span style="color: #FFFFFF;"> Other </span>
+            </div>
+
+            <br>
+            <!-- submit -->
+            <button class="register-submit mt-2" type="submit" [disabled]="registerForm.invalid">Register</button>
+
+          </form>
+
+
+
+        </div>
+
+        <!-- action links -->
+        <div class="app-register-action-link mt-1 d-flex justify-content-center">
+          <p>Or already registered?</p>
+          <a style="color: lime;" class="mx-2" [routerLink]="['/login']">SignIn</a>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>

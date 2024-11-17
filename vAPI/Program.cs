@@ -13,7 +13,7 @@ builder.Services.AddControllers();
 // service: customs
 builder.Services.AddTransient<IUserDetailsService, UserDetailsService>();
 builder.Services.AddTransient<IUserVaccineDetailsService, UserVaccineDetailsService>();
-builder.Services.AddTransient<IAppUserService, AppUserService>(); 
+builder.Services.AddTransient<IAppUserService, AppUserService>();
 builder.Services.AddTransient<IAccountService, AccountService>();
 builder.Services.AddTransient<IBookingService, BookingService>();
 builder.Services.AddTransient<IHospitalService, HospitalService>();
@@ -36,7 +36,21 @@ builder.Services.AddAuthorization();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+// Add CORS policy
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAngularApp", policy =>
+    {
+        policy.WithOrigins("http://localhost:4200") // Your Angular app's URL
+              .AllowAnyHeader()
+              .AllowAnyMethod();
+    });
+});
+
 var app = builder.Build();
+
+// Use the CORS policy
+app.UseCors("AllowAngularApp");
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

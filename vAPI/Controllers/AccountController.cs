@@ -16,27 +16,27 @@ namespace vAPI.Controllers
             _accountService = accountService;
         }
 
-        [HttpGet("LoginUser")]
+        [HttpPost("LoginUser")]
         public IActionResult LoginUser([FromBody] AccountDetailsDto_Login submittedDeails)
         {
-            if(submittedDeails != null)
+            if (submittedDeails != null)
             {
-                return Ok(new {userRole = _accountService.LoginUser(submittedDeails).Result});
+                return Ok(new { userRole = _accountService.LoginUser(submittedDeails).Result });
             }
 
-            return NotFound(new {message = new {}});
+            return NotFound(new { message = new { } });
         }
 
 
         [HttpPost("RegisterNewUser")]
         public IActionResult RegisterNewUser([FromBody] AccountDetailsDto_Registration submittedDetails)
         {
-            if(submittedDetails != null)
+            if (submittedDetails != null)
             {
-                return Ok(new {registrationStatus = _accountService.RegisterNewUser(submittedDetails).Result});
+                return Ok(new { registrationStatus = _accountService.RegisterNewUser(submittedDetails).Result });
             }
 
-            return NotFound(new {message = new{}});
+            return NotFound(new { message = new { } });
         }
     }
 }
