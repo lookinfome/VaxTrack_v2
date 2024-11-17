@@ -1,0 +1,29 @@
+<div style="" class="main-div">
+  <div class="container">
+    <div class="row justify-content-center mt-5">
+      <div class="col col-lg-6 col-md-6 col-sm-12">
+
+        <!-- app title -->
+        <div class="app-home-title text-center">
+          <h1>{{ appName }} for the India</h1>
+        </div>
+
+        <!-- app description -->
+        <div class="app-home-desc mt-3 text-center">
+          <p>{{ appDescription }}</p>
+        </div>
+
+        <!-- action buttons -->
+        <div class="home-action-buttons d-flex justify-content-center mt-5">
+          <!-- action button: login -->
+          <button class="btn-signin" [routerLink]="['login']">SignIn</button>
+
+
+          <!-- action button: registration -->
+          <button class="btn-signup mx-2" [routerLink]="['register']">SignUp</button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,23 @@
+
+
+.app-bg-image {
+  /* background-image: url(../assets/homepage-bg-1.jpg); */
+  background-image: linear-gradient(rgba(68, 68, 56, 0.5), rgba(68, 68, 56, 0.5)),url("../assets/homepage-bg-1.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 100vh;
+  width: 100%;
+  background-attachment: fixed; /* Keeps the background consistent */
+}
+
+
+/* .app-bg-image
+{
+  background-image: url(../assets/homepage-bg-1.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 100vh;
+  width: 100%;
+} */

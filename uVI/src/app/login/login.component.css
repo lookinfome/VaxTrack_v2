@@ -1,0 +1,35 @@
+.app-login-title
+{
+  color: #FFFFFF;
+}
+
+.login-smile
+{
+  color: yellow;
+  border-radius: 50%;
+  box-shadow: 0px 1px 10px yellow;
+}
+
+.login-input
+{
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid gainsboro;
+  background-color: rgba(255, 255, 255, 0.7);
+}
+
+.login-input:focus
+{
+  border-color: lime;
+  box-shadow: 0px 1px 10px lime;
+  outline: none;
+}
+
+.login-submit
+{
+  width: 250px;
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid gray;
+  background-color: gray;
+}

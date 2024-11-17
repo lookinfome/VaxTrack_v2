@@ -1,0 +1,39 @@
+<div>
+  <div class="container">
+    <div class="row justify-content-center mt-5">
+      <div class="col col-6">
+
+        <!-- page title -->
+        <div class="app-login-title text-center">
+          <span>
+            <h1> {{ pageTitle.toUpperCase() }} </h1>
+          </span>
+          <span style="font-size: 16px;">
+            {{ pageDescription }} <i class="login-smile far fa-smile-wink"></i>
+          </span>
+        </div>
+
+        <!-- login form -->
+        <div class="login-form text-center mt-5">
+          <form [formGroup]="loginForm" (ngSubmit)="onSubmitLogin()">
+
+            <!-- user id -->
+            <input class="login-input" type="text" name="userid" id="userid" formControlName="userid" placeholder="username">
+
+            <br>
+
+            <!-- password -->
+            <input class="login-input mt-2" type="password" name="password" id="password" formControlName="password" placeholder="password">
+
+            <br>
+
+            <!-- submit -->
+            <button class="login-submit mt-2" type="submit" [disabled]="loginForm.invalid">Login</button>
+
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
