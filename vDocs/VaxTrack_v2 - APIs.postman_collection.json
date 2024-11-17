@@ -1,0 +1,169 @@
+{
+	"info": {
+		"_postman_id": "4019b6da-56dc-45f4-a65a-a24424343658",
+		"name": "VaxTrack_v2 - APIs",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "39618790"
+	},
+	"item": [
+		{
+			"name": "User Details : By ID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5262/api/UserDetails/GetUserDetailsById?userid=US001",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5262",
+					"path": [
+						"api",
+						"UserDetails",
+						"GetUserDetailsById"
+					],
+					"query": [
+						{
+							"key": "userid",
+							"value": "US001"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "User Vaccine Report : By ID",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5262/api/UserVaccineDetails/GetUserVaccineReportById?userid=US001",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5262",
+					"path": [
+						"api",
+						"UserVaccineDetails",
+						"GetUserVaccineReportById"
+					],
+					"query": [
+						{
+							"key": "userid",
+							"value": "US001"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Save New User",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"UserId\": \"US001\",\r\n    \"UserPassword\": \"Abc!123\",\r\n    \"UserName\": \"Jeff Clinton\",\r\n    \"UserUid\": \"UID015\",\r\n    \"UserBirthDate\": \"1999-01-10\",\r\n    \"UserGender\": \"Male\",\r\n    \"UserPhone\": \"999-000-1456\",\r\n    \"UserRole\": \"User\",\r\n    \"UserVaccinationId\": \"UV011\",\r\n    \"BookingId\": \"BID011\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:5262/api/Account/RegisterNewUser"
+			},
+			"response": []
+		},
+		{
+			"name": "Login Existing User",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"userid\": \"US002\",\r\n    \"userpassword\": \"Abc!123\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:5262/api/Account/LoginUser"
+			},
+			"response": []
+		},
+		{
+			"name": "Hospital Details : All",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:5262/api/Hospital/FetchHospitalDetails"
+			},
+			"response": []
+		},
+		{
+			"name": "Hospital Details : By ID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5262/api/Hospital/FetchHospitalDetailById?hospitalId=H001",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5262",
+					"path": [
+						"api",
+						"Hospital",
+						"FetchHospitalDetailById"
+					],
+					"query": [
+						{
+							"key": "hospitalId",
+							"value": "H001"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Hospital Details : 1 Slots",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:5262/api/Hospital/FetchHospitalAvailableWith1Slots"
+			},
+			"response": []
+		},
+		{
+			"name": "Hospital Details : 2 Slots",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:5262/api/Hospital/FetchHospitalAvailableWith2Slots"
+			},
+			"response": []
+		}
+	]
+}
