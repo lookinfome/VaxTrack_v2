@@ -1,0 +1,55 @@
+// command to generate ASP.NET Web API project in VS code
+    command: dotnet new webapi -n vAPI
+
+// steps to integrate DB
+    step 1: create a class in model folder inheriting DbContext class
+    step 2: add model in that class to be migerated in DB as table
+    step 3: set connection's default string in appsettings.json file
+    step 4: configure program.cs file to add SQLite sercice to connect DB placed in provided default connection string
+    step 5: build app
+    step 6: execute command: dotnet ef migrations add <message>
+    step 7: execute command: dotnet ef database update
+
+// steps to utilize Identiy User class
+    step 1: create a class inheriting Indentity User class
+    step 2: update the AppDbContext class
+    step 3: create a service with method for saving and validating user
+    step 4: utilize these methods
+
+// day 1: basic project setup, apis for login, registration, fetch user details and user vaccination report, password hashing
+    create and connect DB - done
+    create apis to fetch user details by ID - done
+    create apis to fetch user vaccine report by ID - done
+    update user detail password with removing password property - done
+    create apis to register/login - done
+
+// day 2: apis to book slot, fetch\update booking details and hospital details
+    create apis to fetch all booking details, hospital details - done
+    create apis to fetch booking and hospital details by userid, vaccinationstatus, slots (1/2) - done
+    create apis to book slot
+    create services to update hospital details
+    create apis to update hospital details
+
+// day 3: user profile and admin profile
+
+
+
+// day 4: method asynchronization, error handling and add comments
+
+
+// day 5: authentication and authorization
+    add JWT bearer token concept - 
+    create apis to generate JWT bearer token - 
+    secure apis with authorization - 
+    protect and test each apis to confirm if auth is working or not - 
+
+// day 6: add new features: user feedback, profile pic upload
+    add user feedback models
+    create services for user feedback
+    create apis for user feedback
+    add profile pic upload feature
+    update user details model
+    update table with updated property of user details model
+
+
+// day 7: github setup and documentation
