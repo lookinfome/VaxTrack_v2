@@ -17,49 +17,37 @@ export class LoginComponent {
 
   loginForm: FormGroup;
 
-  loginDetails!: {
-    userid: string, password: string;
-  }
-
-
   constructor(private accountService: AccountService, private router: Router)
   {
     this.loginForm = new FormGroup(
       {
-        userid: new FormControl(),
+        userId: new FormControl(),
         password: new FormControl(),
       }
     )
   }
 
-  onSubmitLogin():any
-  {
+  onSubmitLogin(): void {
     if (this.loginForm.valid) {
-      this.loginDetails =
+      const loginDetails =
       {
-        userid: this.loginForm.value.userid,
+        userId: this.loginForm.value.userId,
         password: this.loginForm.value.password
       };
 
-      this.accountService.loginUser(this.loginDetails).subscribe(
+      this.accountService.loginUser(loginDetails).subscribe(
         {
-          next: (response) =>
-          {
-            console.log(`login success for user: ${this.loginDetails.userid}`);
-            this.router.navigate([`userprofile/${this.loginDetails.userid}`]);
+          next: (response) => {
+            console.log(response);
           },
-          error: (response) =>
-          {
-            console.error(`invalid username/password`);
+          error: (error) => {
+            console.log(`${error}`);
           }
         }
-
       );
-
     } else {
-      console.log(`invalid form input formats`);
+      console.log('Invalid username or password input format');
     }
-
   }
 
 

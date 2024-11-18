@@ -33,6 +33,7 @@ namespace vAPI.Services
                                     UserBirthDate = record.UserBirthDate,
                                     UserGender = record.UserGender,
                                     UserPhone = record.UserPhone,
+                                    UserRole = record.UserRole
                                 }).FirstOrDefault();
             
             return userDetails != null ? userDetails : new UserDetailsDto_UserProfile {};

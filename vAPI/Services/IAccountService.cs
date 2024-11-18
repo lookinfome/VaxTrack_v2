@@ -7,7 +7,7 @@ namespace vAPI.Services
     public interface IAccountService
     {
         public Task<bool> RegisterNewUser(AccountDetailsDto_Registration submittedDetails);
-        public Task<string> LoginUser(AccountDetailsDto_Login submittedDetails);
+        public Task<UserDetailsDto_UserProfile> LoginUser(AccountDetailsDto_Login submittedDetails);
     }
 
     // class: to define the implementation of services
@@ -19,20 +19,34 @@ namespace vAPI.Services
         // variable: to handle signin and signup operations
         private readonly IAppUserService _appUserService;
 
+        // variable: to handle user details service
+        private readonly IUserDetailsService _userDetailsService;
+
         // contructor: to initialize the class variables
-        public AccountService(AppDbContext v2Context, IAppUserService appUserService)
+        public AccountService(AppDbContext v2Context, IAppUserService appUserService, IUserDetailsService userDetailsService)
         {
             _v2Context = v2Context;
             _appUserService = appUserService;
+            _userDetailsService = userDetailsService;
         }
 
         // service: login existing user
-        public Task<string> LoginUser(AccountDetailsDto_Login submittedDetails)
+        public async Task<UserDetailsDto_UserProfile> LoginUser(AccountDetailsDto_Login submittedDetails)
         {
-            Task<string> userRole = _appUserService.LoginUser(submittedDetails.UserId, submittedDetails.UserPassword);
+            // Await the asynchronous method
+            string userId = await _appUserService.LoginUser(submittedDetails.UserId, submittedDetails.UserPassword);
 
-            return userRole;
+            // Fetch user details
+            if (!string.IsNullOrEmpty(userId))
+            {
+                UserDetailsDto_UserProfile userProfileDetails = _userDetailsService.FetchUserDetailsById(userId);
+
+                return userProfileDetails;
+            }
+
+            return new UserDetailsDto_UserProfile();
         }
+
 
         // service: register new user
         public async Task<bool> RegisterNewUser(AccountDetailsDto_Registration submittedDetails)
@@ -40,10 +54,10 @@ namespace vAPI.Services
             // register userid and hased password in asp-net-table, with their role
             var registrationResult = await _appUserService.RegisterNewUser(submittedDetails.UserId, submittedDetails.UserPassword, submittedDetails.UserRole);
 
-            if(registrationResult.Succeeded)
+            if (registrationResult.Succeeded)
             {
                 // create a new record for new user
-                UserDetailsModel newUserDetail = new UserDetailsModel 
+                UserDetailsModel newUserDetail = new UserDetailsModel
                 {
                     UserId = submittedDetails.UserId,
                     UserName = submittedDetails.UserName,
@@ -59,8 +73,8 @@ namespace vAPI.Services
 
                 // save changes to the database
                 int dbOP1Status = _v2Context.SaveChanges();
-                
-                if(dbOP1Status >= 0)
+
+                if (dbOP1Status >= 0)
                 {
                     // create a new record for vaccination for new user
                     UserVaccineDetailsModel newUserVaccineDetail = new UserVaccineDetailsModel
@@ -76,7 +90,7 @@ namespace vAPI.Services
                     // save changes to the database
                     int dbOP2Status = _v2Context.SaveChanges();
 
-                    if(dbOP2Status >=0)
+                    if (dbOP2Status >= 0)
                     {
                         // create a new record for booking details for new user
                         BookingDetailsModel newUserBookingDetails = new BookingDetailsModel
@@ -91,7 +105,7 @@ namespace vAPI.Services
                         // save changes to the database
                         int dbOP3Status = _v2Context.SaveChanges();
 
-                        return dbOP3Status>=0 ? true:false;
+                        return dbOP3Status >= 0 ? true : false;
                     }
 
                 }

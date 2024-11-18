@@ -40,15 +40,12 @@ namespace vAPI.Services
             var user = await _userManager.FindByNameAsync(userid);
             if (user == null)
             {
-                return "Invalid userId/password";
+                return "Invalid userId";
             }
 
             var result = await _signInManager.PasswordSignInAsync(user, password, isPersistent: false, lockoutOnFailure: false);
             
-            var roles = await _userManager.GetRolesAsync(user);
-            var role = roles.FirstOrDefault();
-
-            return role;
+            return userid;
         }
         
         // service: register new user
